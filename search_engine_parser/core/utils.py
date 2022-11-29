@@ -5,7 +5,7 @@ import hashlib
 import aiohttp
 from fake_useragent import UserAgent
 
-FILEPATH = os.path.dirname(os.path.abspath(__file__))
+FILEPATH = '/tmp/'
 
 # prevent caching
 USER_AGENT_LIST = [
