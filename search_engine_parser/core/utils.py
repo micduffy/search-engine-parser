@@ -41,7 +41,7 @@ class CacheHandler:
         logging.info("Self Engine Path:"+self.cache)
         # if not os.path.exists(self.cache):
         #     os.makedirs(self.cache)
-        enginelist = os.listdir(engine_path)
+        # enginelist = os.listdir(engine_path)
         # self.engine_cache = {i[:-3]: os.path.join(self.cache, i[:-3]) for i in enginelist if i not in
         #                      ("__init__.py")}
         # for cache in self.engine_cache.values():
