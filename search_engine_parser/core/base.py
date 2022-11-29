@@ -175,7 +175,7 @@ class BaseSearch:
             return self.cache_handler.clear()
         return self.cache_handler.clear(self.name)
 
-    async def get_source(self, url, cache=True, proxy=None, proxy_auth=None):
+    async def get_source(self, url, cache=False, proxy=None, proxy_auth=None):
         """
         Returns the source code of a webpage.
         Also sets the _cache_hit if cache was used
@@ -260,7 +260,7 @@ class BaseSearch:
 
         return search_results
 
-    def search(self, query=None, page=1, cache=True, proxy=None, proxy_auth=None, **kwargs):
+    def search(self, query=None, page=1, cache=False, proxy=None, proxy_auth=None, **kwargs):
         """
         Query the search engine
 
@@ -287,7 +287,7 @@ class BaseSearch:
                          proxy_auth=proxy_auth))
         return self.get_results(soup, **kwargs)
 
-    async def async_search(self, query=None, page=1, cache=True, proxy=None, proxy_auth=None, **kwargs):
+    async def async_search(self, query=None, page=1, cache=False, proxy=None, proxy_auth=None, **kwargs):
         """
         Query the search engine but in async mode
 

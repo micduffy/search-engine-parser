@@ -3,6 +3,7 @@ import random
 import pickle
 import hashlib
 import aiohttp
+import logging
 from fake_useragent import UserAgent
 
 FILEPATH = '/tmp/'
@@ -33,18 +34,21 @@ def get_rand_user_agent():
 
 class CacheHandler:
     def __init__(self):
-        self.cache = os.path.join(FILEPATH, "cache")
-        engine_path = os.path.join(FILEPATH, "engines")
-        if not os.path.exists(self.cache):
-            os.makedirs(self.cache)
-        enginelist = os.listdir(engine_path)
-        self.engine_cache = {i[:-3]: os.path.join(self.cache, i[:-3]) for i in enginelist if i not in
-                             ("__init__.py")}
-        for cache in self.engine_cache.values():
-            if not os.path.exists(cache):
-                os.makedirs(cache)
 
-    async def get_source(self, engine, url, headers, cache=True,
+        self.cache = os.path.join(FILEPATH, "cache")
+        logging.info("Self Cache:"+self.cache)
+        engine_path = os.path.join(FILEPATH, "engines")
+        logging.info("Self Engine Path:"+self.cache)
+        # if not os.path.exists(self.cache):
+        #     os.makedirs(self.cache)
+        enginelist = os.listdir(engine_path)
+        # self.engine_cache = {i[:-3]: os.path.join(self.cache, i[:-3]) for i in enginelist if i not in
+        #                      ("__init__.py")}
+        # for cache in self.engine_cache.values():
+        #     if not os.path.exists(cache):
+        #         os.makedirs(cache)
+
+    async def get_source(self, engine, url, headers, cache=False,
                         proxy=None, proxy_auth=None):
         """
         Retrieves source code of webpage from internet or from cache

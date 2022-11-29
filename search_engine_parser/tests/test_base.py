@@ -115,7 +115,7 @@ class TestScraping(unittest.TestCase):
         Test that the cache was used
         """
         try:
-            cls.vcr_search(*SEARCH_ARGS, cache=True)
+            cls.vcr_search(*SEARCH_ARGS, cache=False)
             if cls.engine._cache_hit == False:
                 assert False, "{} cache - unexpected miss".format(
                     cls.engine.name)
