@@ -1,6 +1,4 @@
-import os
 import random
-import pickle
 import hashlib
 import aiohttp
 import logging
@@ -70,10 +68,10 @@ class CacheHandler:
         encodedUrl = url.encode("utf-8")
         urlhash = hashlib.sha256(encodedUrl).hexdigest()
         engine = engine.lower()
-        cache_path = os.path.join(self.engine_cache[engine], urlhash)
-        if os.path.exists(cache_path) and cache:
-            with open(cache_path, 'rb') as stream:
-                return pickle.load(stream), True
+        # cache_path = os.path.join(self.engine_cache[engine], urlhash)
+        # if os.path.exists(cache_path) and cache:
+        #     with open(cache_path, 'rb') as stream:
+        #         return pickle.load(stream), True
         get_vars = { 'url':url, 'headers':headers }
         if proxy and proxy_auth:
             auth = aiohttp.BasicAuth(*proxy_auth)
@@ -82,8 +80,8 @@ class CacheHandler:
         async with aiohttp.ClientSession() as session:
             async with session.get(**get_vars) as resp:
                 html = await resp.text()
-                with open(cache_path, 'wb') as stream:
-                    pickle.dump(str(html), stream)
+                # with open(cache_path, 'wb') as stream:
+                #     pickle.dump(str(html), stream)
                 return str(html), False
 
     def clear(self, engine=None):
@@ -93,13 +91,13 @@ class CacheHandler:
 
         :param engine: engine to clear
         """
-        if not engine:
-            for engine_cache in self.engine_cache.values():
-                for root, dirs, files in os.walk(engine_cache):
-                    for f in files:
-                        os.remove(os.path.join(engine_cache, f))
-        else:
-            engine_cache = self.engine_cache[engine.lower()]
-            for _, _, files in os.walk(engine_cache):
-                for f in files:
-                    os.remove(os.path.join(engine_cache, f))
+        # if not engine:
+        #     for engine_cache in self.engine_cache.values():
+        #         for root, dirs, files in os.walk(engine_cache):
+        #             for f in files:
+        #                 os.remove(os.path.join(engine_cache, f))
+        # else:
+        #     engine_cache = self.engine_cache[engine.lower()]
+        #     for _, _, files in os.walk(engine_cache):
+        #         for f in files:
+        #             os.remove(os.path.join(engine_cache, f))
