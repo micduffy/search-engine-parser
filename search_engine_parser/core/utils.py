@@ -32,11 +32,11 @@ def get_rand_user_agent():
 
 class CacheHandler:
     def __init__(self):
-
-        self.cache = os.path.join(FILEPATH, "cache")
-        logging.info("Self Cache:"+self.cache)
-        engine_path = os.path.join(FILEPATH, "engines")
-        logging.info("Self Engine Path:"+self.cache)
+        logging.info('Initialising cache NOT')
+        # self.cache = os.path.join(FILEPATH, "cache")
+        # logging.info("Self Cache:"+self.cache)
+        # engine_path = os.path.join(FILEPATH, "engines")
+        # logging.info("Self Engine Path:"+self.cache)
         # if not os.path.exists(self.cache):
         #     os.makedirs(self.cache)
         # enginelist = os.listdir(engine_path)
