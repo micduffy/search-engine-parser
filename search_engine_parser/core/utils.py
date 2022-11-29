@@ -1,5 +1,5 @@
 import random
-import hashlib
+# import hashlib
 import aiohttp
 import logging
 from fake_useragent import UserAgent
@@ -66,7 +66,7 @@ class CacheHandler:
         :type proxy_auth: (str, str)
         """
         encodedUrl = url.encode("utf-8")
-        urlhash = hashlib.sha256(encodedUrl).hexdigest()
+        # urlhash = hashlib.sha256(encodedUrl).hexdigest()
         engine = engine.lower()
         # cache_path = os.path.join(self.engine_cache[engine], urlhash)
         # if os.path.exists(cache_path) and cache:
